@@ -1,9 +1,9 @@
 import React from 'react';
+import MainsScreen from './components/screens/MainScreen/MainScreen';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <MainsScreen />
   );
 }
 
