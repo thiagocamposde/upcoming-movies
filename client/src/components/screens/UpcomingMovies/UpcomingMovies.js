@@ -1,24 +1,28 @@
 import React from 'react'
-import { Paper } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
-import styles from './UpcomingMovies.styles'
+import Movie from '../../base/Movie'
+import { Grid } from '@material-ui/core'
 
 const UpcomingMovies = ({ movies, baseUrl, classes }) => {
   return (
-    <div>
-      <ul>
-        {movies.map((movie) => {
-          return (
-            <Paper className={classes.root} key={movie.id}>
-              <img src={`${baseUrl}w154${movie.poster_path}`} />
-              {movie.title}
-              {movie.release_date}
-            </Paper>
-          )
-        })}
-      </ul>
-    </div>
+    <Grid
+      className={classes.movieListContainer}
+      container
+      spacing={2}
+    >
+      {movies.map((movie) =>
+        <Grid
+          item
+          container
+          justify='center'
+          xs={12}
+          sm={2}
+          key={movie.id}
+        >
+          <Movie movie={movie} baseUrl={baseUrl} />
+        </Grid>
+      )}
+    </Grid>
   )
 }
 
-export default withStyles(styles)(UpcomingMovies)
+export default UpcomingMovies

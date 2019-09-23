@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getUpcomingMovies } from '../../../api/movie.api'
 import { getTmdbApiConfiguration } from '../../../api/configuration.api'
-import UpcomingMovies from '../UpcomingMovies/UpcomingMovies'
+import UpcomingMovies from '../UpcomingMovies'
 
 const MainsScreen = () => {
   const [upcomingMovies, setUpcomingMovies] = useState([])
