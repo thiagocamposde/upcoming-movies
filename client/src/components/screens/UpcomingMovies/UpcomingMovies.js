@@ -1,15 +1,24 @@
 import React from 'react'
+import { Paper } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
+import styles from './UpcomingMovies.styles'
 
-const UpcomingMovies = ({ movies }) => {
+const UpcomingMovies = ({ movies, baseUrl, classes }) => {
   return (
     <div>
       <ul>
         {movies.map((movie) => {
-          return <li key={movie.id}>{movie.title}</li>
+          return (
+            <Paper className={classes.root} key={movie.id}>
+              <img src={`${baseUrl}w154${movie.poster_path}`} />
+              {movie.title}
+              {movie.release_date}
+            </Paper>
+          )
         })}
       </ul>
     </div>
   )
 }
 
-export default UpcomingMovies
+export default withStyles(styles)(UpcomingMovies)
