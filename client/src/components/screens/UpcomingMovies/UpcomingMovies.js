@@ -1,27 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Movie from '../../base/Movie'
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
+import ReactPaginate from 'react-paginate'
+import { getUpcomingMovies } from '../../../api/movie.api'
 
-const UpcomingMovies = ({ movies, baseUrl, classes }) => {
+const UpcomingMovies = ({ baseUrl, classes }) => {
+  const [upcomingMoviesData, setUpcomingMovies] = useState(null)
+  const [currentPage, setPage] = useState(1)
+
+  useEffect(() => {
+    fetchUpcomingMovies(currentPage)
+  }, [])
+
+  const fetchUpcomingMovies = async (page) => {
+    const response = await getUpcomingMovies(page)
+    setUpcomingMovies(response.data)
+  }
+
+  const handlePageClick = (selectedPage) => {
+    setPage(selectedPage.selected + 1)
+    fetchUpcomingMovies(selectedPage.selected + 1)
+  }
+
   return (
-    <Grid
-      className={classes.movieListContainer}
-      container
-      spacing={2}
-    >
-      {movies.map((movie) =>
+    upcomingMoviesData &&
+    (
+      <div className={classes.root}>
         <Grid
-          item
           container
-          justify='center'
-          xs={12}
-          sm={2}
-          key={movie.id}
+          spacing={4}
+          className={classes.listContainer}
         >
-          <Movie movie={movie} baseUrl={baseUrl} />
+          <Grid item xs={12}>
+            <Typography align='start' color='textPrimary' variant='h2' className={classes.pageTitle}>
+              Upcoming movies
+            </Typography>
+          </Grid>
+          {upcomingMoviesData.results.map((movie) =>
+            <Grid
+              item
+              key={movie.id}
+              xs={12}
+              sm={2}
+            >
+              <Movie movie={movie} baseUrl={baseUrl} />
+            </Grid>
+          )}
+          <Grid item xs={12}>
+            <ReactPaginate
+              previousLabel={currentPage > 1 ? 'previous' : null}
+              nextLabel={currentPage < upcomingMoviesData.total_pages ? 'next' : null}
+              breakLabel='...'
+              breakClassName='break-me'
+              pageCount={upcomingMoviesData.total_pages}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={classes.pagination}
+              pageClassName={classes.subContainerPagination}
+              activeClassName='active'
+              previousClassName={classes.previousClassName}
+              nextClassName={classes.nextClassName}
+              pageLinkClassName={classes.pageLinkClassName}
+            />
+          </Grid>
         </Grid>
-      )}
-    </Grid>
+
+      </div>
+    )
   )
 }
 

@@ -6,10 +6,12 @@ const styles = theme => {
     root: {
     },
     title: {
-      fontSize: '1.4rem'
+      fontSize: '1.4rem',
+      color: theme.colors.lightGray1
     },
     releaseDate: {
-      fontSize: '1.2rem'
+      fontSize: '1.2rem',
+      color: theme.colors.lightGray1
     },
     poster: {
       maxWidth: '100%'
