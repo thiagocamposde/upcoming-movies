@@ -3,6 +3,7 @@ import Movie from '../../base/Movie'
 import { Grid, Typography } from '@material-ui/core'
 import ReactPaginate from 'react-paginate'
 import { getUpcomingMovies } from '../../../api/movie.api'
+import { Link } from 'react-router-dom'
 
 const UpcomingMovies = ({ baseUrl, classes }) => {
   const [upcomingMoviesData, setUpcomingMovies] = useState(null)
@@ -37,13 +38,16 @@ const UpcomingMovies = ({ baseUrl, classes }) => {
             </Typography>
           </Grid>
           {upcomingMoviesData.results.map((movie) =>
-            <Grid
-              item
-              key={movie.id}
-              xs={12}
-              sm={2}
-            >
-              <Movie movie={movie} baseUrl={baseUrl} />
+            <Grid item key={movie.id} xs={12} sm={3}>
+              <Link
+                to={{
+                  pathname: '/movie/details',
+                  state: { movie: movie }
+                }}
+                className={classes.link}
+              >
+                <Movie movie={movie} baseUrl={baseUrl} />
+              </Link>
             </Grid>
           )}
           <Grid item xs={12}>

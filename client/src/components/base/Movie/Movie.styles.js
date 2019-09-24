@@ -6,11 +6,10 @@ const styles = theme => {
     root: {
     },
     title: {
-      fontSize: '1.4rem',
-      color: theme.colors.lightGray1
+      color: theme.colors.lightGray1,
+      fontSize: '2rem'
     },
     releaseDate: {
-      fontSize: '1.2rem',
       color: theme.colors.lightGray1
     },
     poster: {

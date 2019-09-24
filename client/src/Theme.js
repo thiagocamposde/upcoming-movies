@@ -12,6 +12,22 @@ const theme = createMuiTheme({
     text: {
       primary: '#D9D9D9'
     }
+  },
+  typography: {
+    body1: {
+      fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+      fontWeight: 400,
+      fontSize: '1.6rem',
+      lineHeight: 1.5,
+      letterSpacing: '0.00938em'
+    },
+    body2: {
+      fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+      fontWeight: 400,
+      fontSize: '1.2rem',
+      lineHeight: 1.43,
+      letterSpacing: '0.01071em'
+    }
   }
 })
 

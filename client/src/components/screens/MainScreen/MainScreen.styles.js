@@ -4,7 +4,8 @@ import MainScreen from './MainScreen'
 const styles = theme => {
   return {
     root: {
-      backgroundColor: theme.colors.darkGray2
+      backgroundColor: theme.colors.darkGray2,
+      minHeight: '100vh'
     }
   }
 }

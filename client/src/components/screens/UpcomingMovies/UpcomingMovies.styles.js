@@ -2,6 +2,7 @@ import { withStyles } from '@material-ui/styles'
 import UpcomingMovies from './UpcomingMovies'
 
 const styles = theme => {
+  console.log(theme)
   return {
     root: {
       padding: '1.6rem',
@@ -11,10 +12,16 @@ const styles = theme => {
     },
     listContainer: {
       width: '70%',
-      marginTop: '5rem'
+      marginTop: '5rem',
+      [theme.breakpoints.down('md')]: {
+        width: '100%'
+      }
     },
     movieListContainer: {
       padding: '1rem'
+    },
+    link: {
+      textDecoration: 'none'
     },
     pagination: {
       listStyleType: 'none',
