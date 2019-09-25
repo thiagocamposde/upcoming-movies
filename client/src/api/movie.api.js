@@ -7,3 +7,20 @@ export const getUpcomingMovies = async (page) => {
     console.log(err.message)
   }
 }
+export const getMovie = async (movieId) => {
+  try {
+    const response = await request.get(`/tmbd/movie/${movieId}`)
+    return response.data
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+export const search = async (query) => {
+  try {
+    const response = await request.get(`/tmbd/movie/search?query=${query}`)
+    return response.data.results
+  } catch (err) {
+    console.log(err.message)
+  }
+}

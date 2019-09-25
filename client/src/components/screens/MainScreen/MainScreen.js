@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { getTmdbApiConfiguration } from '../../../api/configuration.api'
+import React from 'react'
 import UpcomingMovies from '../UpcomingMovies'
 import MovieDetails from '../MovieDetails'
 import { Switch, Route } from 'react-router-dom'
 
-const MainsScreen = ({ classes }) => {
-  const [tmdbConfig, setTmdbConfig] = useState(null)
-  const [tmdbConfigIsloading, setTmdbConfigIsLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchTmdbConfiguration = async () => {
-      const response = await getTmdbApiConfiguration()
-      setTmdbConfig(response.data)
-      setTmdbConfigIsLoading(false)
-    }
-
-    fetchTmdbConfiguration()
-  }, [])
-
+const MainsScreen = ({ classes, tmdbConfigIsloading, tmdbConfig }) => {
   if (tmdbConfigIsloading) return null
 
   return (
@@ -29,7 +15,7 @@ const MainsScreen = ({ classes }) => {
           )}
         />
         <Route
-          exact path='/movie/details' render={props => (
+          path='/movie/details/:id?' render={props => (
             <MovieDetails {...props} baseUrl={tmdbConfig.images.base_url} />
           )}
         />

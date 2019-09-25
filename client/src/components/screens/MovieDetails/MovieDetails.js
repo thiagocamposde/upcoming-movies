@@ -1,10 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, Typography } from '@material-ui/core'
+import { getMovie } from '../../../api/movie.api'
 import moment from 'moment'
+import { Redirect } from 'react-router-dom'
 
-const MovieDetails = ({ location, baseUrl, classes }) => {
-  const movie = location.state.movie
-  return (
+const MovieDetails = ({ baseUrl, match, classes }) => {
+  const movieId = match.params.id
+  console.log('movieId', movieId)
+
+  const [movie, setMovie] = useState(null)
+
+  useEffect(() => {
+    if (movieId) {
+      getMovie(movieId).then((result) => {
+        setMovie(result)
+      })
+    }
+  }, [movieId])
+
+  console.log('movieId', movieId)
+  if (!movieId) {
+    return <Redirect to={{ pathname: '/' }} />
+  }
+
+  return movie && (
     <div className={classes.root}>
       <div className={classes.movieContainer}>
         <Grid container spacing={6}>

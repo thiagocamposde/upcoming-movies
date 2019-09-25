@@ -11,7 +11,7 @@ const UpcomingMovies = ({ baseUrl, classes }) => {
 
   useEffect(() => {
     fetchUpcomingMovies(currentPage)
-  }, [])
+  }, [currentPage])
 
   const fetchUpcomingMovies = async (page) => {
     const response = await getUpcomingMovies(page)
@@ -40,10 +40,7 @@ const UpcomingMovies = ({ baseUrl, classes }) => {
           {upcomingMoviesData.results.map((movie) =>
             <Grid item key={movie.id} xs={12} sm={3}>
               <Link
-                to={{
-                  pathname: '/movie/details',
-                  state: { movie: movie }
-                }}
+                to={`/movie/details/${movie.id}`}
                 className={classes.link}
               >
                 <Movie movie={movie} baseUrl={baseUrl} />
