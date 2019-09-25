@@ -5,8 +5,11 @@ import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import { search } from '../../../api/movie.api'
 import AsyncSelect from 'react-select/async'
+import { Grid } from '@material-ui/core'
 
 const NavBar = ({ movie, tmdbConfigIsloading, tmdbConfig, classes }) => {
+  console.log(tmdbConfig)
+
   const loadOptions = (inputValue, callback) => {
     if (inputValue) {
       search(inputValue).then(results => {
@@ -14,12 +17,11 @@ const NavBar = ({ movie, tmdbConfigIsloading, tmdbConfig, classes }) => {
           return {
             value: movieObj,
             label: (
-              <Link
-                to={`/movie/details/${movieObj.id}`}
-                className={classes.link}
-              >
-                <img src={`${tmdbConfig.images.baseUrl}w92${movieObj.poster_path}`} alt={movieObj.title} height='50px' width='30px' />
-                {movieObj.title}
+              <Link to={`/movie/details/${movieObj.id}`} className={classes.optionLink}>
+                <Grid container spacing={2} alignItems='center'>
+                  <Grid item><img src={`${tmdbConfig.images.base_url}w92${movieObj.poster_path}`} alt={movieObj.title} height='50px' width='30px' /></Grid>
+                  <Grid item><Typography>{movieObj.title}</Typography></Grid>
+                </Grid>
               </Link>
             )
           }

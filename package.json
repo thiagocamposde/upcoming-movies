@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Backend solution for the upcoming movies website challenge",
   "main": "app.js",
+  "engines": {
+    "node": "11.14.0",
+    "npm": "6.7.0"
+  },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",

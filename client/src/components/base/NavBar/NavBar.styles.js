@@ -48,6 +48,10 @@ const styles = theme => {
     link: {
       textDecoration: 'none',
       color: theme.colors.lightGray1
+    },
+    optionLink: {
+      textDecoration: 'none',
+      color: theme.colors.darkGray3
     }
   }
 }

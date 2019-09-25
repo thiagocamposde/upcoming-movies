@@ -9,7 +9,10 @@ const styles = theme => {
     },
     movieContainer: {
       backgroundColor: theme.colors.darkGray1,
-      marginTop: '5rem'
+      marginTop: '5rem',
+      [theme.breakpoints.down('md')]: {
+        padding: '1rem'
+      }
     },
     title: {
       marginBottom: '2rem'
