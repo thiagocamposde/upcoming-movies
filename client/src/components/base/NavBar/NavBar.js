@@ -8,8 +8,6 @@ import AsyncSelect from 'react-select/async'
 import { Grid } from '@material-ui/core'
 
 const NavBar = ({ movie, tmdbConfigIsloading, tmdbConfig, classes }) => {
-  console.log(tmdbConfig)
-
   const loadOptions = (inputValue, callback) => {
     if (inputValue) {
       search(inputValue).then(results => {

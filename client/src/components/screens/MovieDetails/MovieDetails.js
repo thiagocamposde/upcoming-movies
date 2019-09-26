@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom'
 
 const MovieDetails = ({ baseUrl, match, classes }) => {
   const movieId = match.params.id
-  console.log('movieId', movieId)
 
   const [movie, setMovie] = useState(null)
 
@@ -18,7 +17,6 @@ const MovieDetails = ({ baseUrl, match, classes }) => {
     }
   }, [movieId])
 
-  console.log('movieId', movieId)
   if (!movieId) {
     return <Redirect to={{ pathname: '/' }} />
   }

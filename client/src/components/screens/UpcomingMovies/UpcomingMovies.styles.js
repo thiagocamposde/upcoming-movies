@@ -2,7 +2,6 @@ import { withStyles } from '@material-ui/styles'
 import UpcomingMovies from './UpcomingMovies'
 
 const styles = theme => {
-  console.log(theme)
   return {
     root: {
       padding: '1.6rem',
